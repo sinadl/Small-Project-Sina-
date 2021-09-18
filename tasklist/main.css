@@ -1,0 +1,23 @@
+.error.input-field input{
+    border-color: red;
+}
+.error.input-field .error{
+    position: absolute;
+    bottom: 0px;
+    color: red;
+    font-size: 12px;
+    left: 10px;
+}
+.input-field{
+    margin-bottom: 10px;
+}
+.task-item{
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    border-bottom: solid 1px #cfcfcf;
+}
+.task-item a{
+    cursor: pointer;
+}
