@@ -4,6 +4,7 @@ const taskList = document.querySelector('.collection');
 const clearBtn = document.querySelector('.clear-tasks');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
+const bodyTag = document.getElementsByTagName("body");
 
 
 
@@ -12,6 +13,17 @@ const taskInput = document.querySelector('#task');
 addEventElement();
 function addEventElement(e){
     form.addEventListener("submit", formSubmit);
+    taskList.addEventListener("click", deleteTask);
+
+
+
+
+
+
+
+    let toastC = document.createElement("div");
+    toastC.className = 'toast-container';
+    bodyTag[0].appendChild(toastC);
 }
 
 function formSubmit(e){
@@ -44,3 +56,27 @@ function formSubmit(e){
     taskInput.value = "";
     }    
 }
+// remove items
+function deleteTask(e){
+    if(e.target.classList.contains("fa-remove")){
+        e.target.parentElement.parentElement.remove();
+        toastShow("The item has been removed");
+    }
+}
+// toast on delete item
+function toastShow(toastText){
+    let toasts = document.createElement("div");
+    toasts.className = 'toast-custom';
+    let toastHeader = document.createElement('span');
+    toastHeader.innerHTML = "<i class='fa fa-remove'></i>";
+    toasts.appendChild(toastHeader);
+    toasts.appendChild(document.createTextNode(toastText));
+    // bodyTag[0].appendChild(toasts);
+    document.querySelector('.toast-container').append(toasts);
+    setTimeout(function(){
+        toasts.remove();
+    }, 7000);
+}
+document.querySelector('.toast-container').addEventListener("click",(e)=>{
+    e.target.parentElement.parentElement.remove();
+});
