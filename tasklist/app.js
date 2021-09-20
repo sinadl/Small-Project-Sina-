@@ -14,7 +14,9 @@ addEventElement();
 function addEventElement(e){
     form.addEventListener("submit", formSubmit);
     taskList.addEventListener("click", deleteTask);
-
+    filter.addEventListener("keyup", filterTasks);
+    clearBtn.addEventListener("click", (e)=>{while(taskList.firstChild){taskList.firstChild.remove();}clearTBtn();});
+    clearTBtn();
 
 
 
@@ -54,6 +56,7 @@ function formSubmit(e){
     newTask.appendChild(aTag);
     taskList.appendChild(newTask);
     taskInput.value = "";
+    clearTBtn();
     }    
 }
 // remove items
@@ -61,6 +64,7 @@ function deleteTask(e){
     if(e.target.classList.contains("fa-remove")){
         e.target.parentElement.parentElement.remove();
         toastShow("The item has been removed");
+        clearTBtn();
     }
 }
 // toast on delete item
@@ -77,6 +81,26 @@ function toastShow(toastText){
         toasts.remove();
     }, 7000);
 }
-document.querySelector('.toast-container').addEventListener("click",(e)=>{
-    e.target.parentElement.parentElement.remove();
-});
+document.querySelector('.toast-container').addEventListener("click",(e)=>{e.target.parentElement.parentElement.remove();});
+function clearTBtn(){
+    if(taskList.children.length == 0){
+        clearBtn.style.display = "none";
+    }else{
+        clearBtn.style.display = "block";
+    }
+}
+
+// filtering tasks
+
+function filterTasks(e){
+    let filterText = e.target.value.toLowerCase();
+    document.querySelectorAll(".task-item").forEach((index)=>{
+        const item = index.firstChild.textContent;
+        if(item.toLowerCase().indexOf(filterText) !== -1){
+            console.log(item)
+            index.style.display = 'flex';
+        }else{
+            index.style.display = 'none';
+        }
+    });
+}

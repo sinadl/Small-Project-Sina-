@@ -54,3 +54,6 @@
     bottom: 5px;
     flex-direction: column;
 }
+.clear-tasks{
+    display: block;
+}
