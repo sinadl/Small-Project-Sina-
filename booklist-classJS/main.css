@@ -1,0 +1,29 @@
+.card{
+    margin-top: 10em;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#book-form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+#book-form > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#book-form > div > label{
+    margin-bottom: 0;
+}
+.card-body > table{
+    width: 50%;
+    margin: 20px auto;
+    border-top: solid 1px darkgray;
+}
