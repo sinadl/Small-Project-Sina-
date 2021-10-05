@@ -27,3 +27,29 @@
     margin: 20px auto;
     border-top: solid 1px darkgray;
 }
+.bg-red{
+    background-color: #b10000;
+    color: white;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    width: 50%;
+    padding: 5px 7px;
+    margin-bottom: 5px;
+    transition: 150ms;
+}
+.bg-green{
+    background-color: rgb(0 171 45);
+    color: white;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    width: 50%;
+    padding: 5px 7px;
+    margin-bottom: 5px;
+    transition: 150ms;
+}
+.bg-green.fade-Out,.bg-red.fade-Out{
+    opacity: 0;
+    visibility: hidden;
+}
