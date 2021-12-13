@@ -1,0 +1,17 @@
+.heading{
+    text-align: left;
+}
+.card{
+    background-color: #3a3a3a;
+    color: #959595;
+}
+#profile{
+    transition: 500ms ease;
+}
+#profile .card .col-md-9 .badge{
+    padding: 7px;
+}
+#profile .card .col-md-9 .list-group-item{
+    background: #343a40;
+    color: #7a7a7a;
+}
