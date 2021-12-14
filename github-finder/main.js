@@ -3,12 +3,17 @@ class gitHub{
     constructor(){
         this.client_id = '1f74f4ce1621d8dd6df6';
         this.client_secret = 'dfd15ad97c044a475d1f9072baf5392ca81c117a';
+        this.repos_count = 6;
+        this.repos_sort = 'created: asc';
     }
     async getUser(user){
-        const profileRepos = await fetch(`https://api.github.com/users/${user}?client_id=${this.client_id}?client_secret=${this.client_secret}`);
+        const profileRepos = await fetch(`https://api.github.com/users/${user}?client_id=${this.client_id}&client_secret=${this.client_secret}`);
+        const theRepos = await fetch(`https://api.github.com/users/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}&client_id=${this.client_id}&client_secret=${this.client_secret}`);
         const profiles = await profileRepos.json();
+        const ownRepos = await theRepos.json();
         return{
-            profiles
+            profiles,
+            ownRepos
         }
     }
 }
@@ -23,7 +28,7 @@ class UI{
         this.profile.innerHTML = `
         <div class="card card-body mb-3">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 mb-3">
             <img class="img-fluid mb-2" src="${user.avatar_url}" alt="">
             <a href="${user.url}" class="btn btn-primary btn-block">View Profile</a>
           </div>
@@ -45,6 +50,26 @@ class UI{
     <h3 class="page-heading mb-3">Latest Repos</h3>
     <div id="repos"></div>
         `}
+    showRepos(data){
+        let output = '';
+        data.forEach(element => {
+            output+= `
+            <div class="card card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <a href="${element.html_url}" target="_blank">${element.name}</a>          
+              </div>
+              <div class="col-md-6">
+                <span class="badge badge-primary">${element.stargazers_count}</span>
+                <span class="badge badge-secondary">${element.watchers_count}</span>
+                <span class="badge badge-success">${element.forms_count}</span>
+              </div>
+            </div>
+          </div>
+            `;
+        });
+        document.getElementById('repos').innerHTML = output;
+    }
     clearProfile(){
         this.profile.style.opacity = "0";
         setTimeout(() => {
@@ -85,6 +110,7 @@ searchUser.addEventListener("keyup", (e) =>{
             }
             else{
                 ui.showProfile(data.profiles);
+                ui.showRepos(data.ownRepos);
             }
         })
     }else{

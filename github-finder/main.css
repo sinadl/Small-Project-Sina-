@@ -8,7 +8,7 @@
 #profile{
     transition: 500ms ease;
 }
-#profile .card .col-md-9 .badge{
+#profile .card .badge{
     padding: 7px;
 }
 #profile .card .col-md-9 .list-group-item{
