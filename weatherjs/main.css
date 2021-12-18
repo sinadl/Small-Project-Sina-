@@ -1,0 +1,17 @@
+#w-string span{
+    display: flex;
+    justify-content: center;
+}
+#w-string span strong{
+    
+}
+#w-string span p{
+    margin: 0px 16px;
+    font-size: 17px;
+    font-weight: 400;
+    color: black;
+    font-family: monospace;
+}
+.bg-primary.main-bg.Snow{
+    background-image: linear-gradient(#d7d7d7,#2fa4e7 60%,#1d9ce5);
+}
